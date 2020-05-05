@@ -130,3 +130,39 @@ $ cat package.json
   }
 }
 ```
+
+### TypeORM初期化
+
+```bash
+$ ./node_modules/.bin/typeorm init --database sqlite
+Project created inside current directory.
+$ cat ormconfig.json
+{
+   "type": "sqlite",
+   "database": "database.sqlite",
+   "synchronize": true,
+   "logging": false,
+   "entities": [
+      "src/entity/**/*.ts"
+   ],
+   "migrations": [
+      "src/migration/**/*.ts"
+   ],
+   "subscribers": [
+      "src/subscriber/**/*.ts"
+   ],
+   "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+   }
+}
+$ rm -rf node_modules
+$ npm install
+$ npm start
+...
+Inserting a new user into the database...
+Saved a new user with id: 1
+Loading users from the database...
+Loaded users:  [ User { id: 1, firstName: 'Timber', lastName: 'Saw', age: 25 } ]
+Here you can setup and run express/koa/any other framework.```
